@@ -9,6 +9,10 @@ body {
   font-size: 14px;
 }
 
+.checkbox {
+  size: 5px
+}
+
 header {
   border-bottom: 1px #ccc solid;
   background: #eee;

@@ -7,6 +7,7 @@ const URL = 'http://localhost:6001/listings'
 function App() {
   const [ads, setAds] = useState([])
   const [display, setDisplay] = useState('')
+  const [isChecked, setIsChecked] = useState(false)
 
   useEffect(()=> {
     fetch(URL)
@@ -18,11 +19,18 @@ function App() {
     setAds((ads) => [...ads].filter(elem => elem.id !== id))
   }
 
-  const searchedAds = [...ads].filter(elem => elem.description.toLowerCase().includes(display.toLowerCase()))
+  function onAddAd(newItem){
+    setAds((ads) => [...ads, newItem])
+  }
+
+  const searchedAds = isChecked ? [...ads]
+    .filter(elem => elem.description.toLowerCase().includes(display.toLowerCase()))
+    .sort((a,b) => a.location < b.location ? -1 : 1)
+    : [...ads].filter(elem => elem.description.toLowerCase().includes(display.toLowerCase()))
 
   return (
     <div className="app">
-      <Header display={display} setDisplay={setDisplay}/>
+      <Header display={display} setDisplay={setDisplay} isChecked={isChecked} setIsChecked={setIsChecked} handleAddAd={onAddAd}/>
       <ListingsContainer ads={searchedAds} handleDeleteAd={onDeleteAd}/>
     </div>
   );

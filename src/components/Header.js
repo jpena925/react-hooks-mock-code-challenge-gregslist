@@ -1,7 +1,8 @@
 import React from "react";
 import Search from "./Search";
+import AdForm from "./AdForm"
 
-function Header({display, setDisplay}) {
+function Header({display, setDisplay, isChecked, setIsChecked, handleAddAd}) {
   return (
     <header>
       <h1>
@@ -10,7 +11,8 @@ function Header({display, setDisplay}) {
         </span>
         gregslist
       </h1>
-      <Search display={display} setDisplay={setDisplay}/>
+      <Search display={display} setDisplay={setDisplay} isChecked={isChecked} setIsChecked={setIsChecked}/>
+      <AdForm handleAddAd={handleAddAd}/>
     </header>
   );
 }

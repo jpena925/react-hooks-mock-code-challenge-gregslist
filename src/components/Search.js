@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 
-function Search({ display, setDisplay }) {
+function Search({ display, setDisplay, isChecked, setIsChecked}) {
   const [search, setSearch] = useState('')
+  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -17,6 +18,14 @@ function Search({ display, setDisplay }) {
         value={search}
         onChange={(e) => setSearch((search) => e.target.value)}
       />
+      <label>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={(e) => setIsChecked((isChecked) => !isChecked)}
+        />
+        Sort by location Alphabetically
+      </label>
       <button type="submit" onSubmit={handleSubmit}>🔍</button>
     </form>
   );
